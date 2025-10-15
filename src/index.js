@@ -2,7 +2,7 @@ import Mixin from './mixin';
 import Logger from './logger';
 import Listener from './listener';
 import Emitter from './emitter';
-import SocketIO from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 export default class VueSocketIO {
 
@@ -62,7 +62,7 @@ export default class VueSocketIO {
 
             Logger.info('Received connection string');
 
-            return this.io = SocketIO(connection, options);
+            return this.io = io(connection, options);
 
         } else {
 

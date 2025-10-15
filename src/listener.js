@@ -31,10 +31,12 @@ export default class VueSocketIOListener {
      * Listening all socket.io events
      */
     register(){
+        const originalOnevent = this.io.onevent;
         this.io.onevent = (packet) => {
+            originalOnevent.call(this.io, packet);    
             let [event, ...args] = packet.data;
 
-            if(args.length === 1) args = args[0];
+            if(args.length > 0) args = args[0];
 
             this.onEvent(event, args)
         };
